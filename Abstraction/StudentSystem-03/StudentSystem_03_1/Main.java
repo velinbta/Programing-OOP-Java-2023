@@ -5,16 +5,16 @@ import java.util.Scanner;
 // Не е рефакториран, както по условие - написан е наново
 public class Main {
 
-    public static final String exit = "Exit";
-    public static final String create = "Create";
-    public static final String show = "Show";
+    public static final String EXIT_COMMAND = "Exit";
+    public static final String CREATE_COMMAND = "Create";
+    public static final String SHOW_COMMAND = "Show";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         String input = scanner.nextLine();
 
-        while (!input.equals(exit)) {
+        while (!input.equals(EXIT_COMMAND)) {
 
             String[] data = input.split("\\s+");
             String command = data[0];
@@ -22,8 +22,9 @@ public class Main {
 
             switch (command) {
 
-                case create: // <- Създава, добавя
+                case CREATE_COMMAND:
 
+                    // Създава, добавя
                     int age = Integer.parseInt(data[2]);
                     double grade = Double.parseDouble(data[3]);
 
@@ -33,8 +34,9 @@ public class Main {
 
                     break;
 
-                case show: // <- Принтира
+                case SHOW_COMMAND:
 
+                    // Принтира
                     StudentSystem.printStudentInfo(name);
 
                     break;
