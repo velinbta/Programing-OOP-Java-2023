@@ -2,8 +2,8 @@ package PointInRectangle_02_1;
 
 public class Rectangle {
 
-    public final Point bottomLeft;
-    public final Point topRight;
+    private final Point bottomLeft;
+    private final Point topRight;
 
     public Rectangle(Point bottomLeft, Point topRight) {
         this.bottomLeft = bottomLeft;
