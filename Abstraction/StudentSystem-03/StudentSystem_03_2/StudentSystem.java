@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class StudentSystem {
 
-    private static final String create = "Create";
-    private static final String show = "Show";
+    private static final String CREATE_COMMAND = "Create";
+    private static final String SHOW_COMMAND = "Show";
 
     private final Map<String, Student> studentData;
 
@@ -21,7 +21,7 @@ public class StudentSystem {
 
         switch (command) {
 
-            case create:
+            case CREATE_COMMAND:
 
                 int age = Integer.parseInt(data[2]);
                 double grade = Double.parseDouble(data[3]);
@@ -34,7 +34,7 @@ public class StudentSystem {
 
                 break;
 
-            case show:
+            case SHOW_COMMAND:
 
                 // Принтира информацията за студента, ако съществува
                 if (!this.studentData.containsKey(name)) {
@@ -58,14 +58,9 @@ public class StudentSystem {
 
         // Според оценката
         if (student.getGrade() >= 5.00)
-
             return "Excellent student.";
-
-        else if (student.getGrade() < 5.00 && student.getGrade() >= 3.50) {
-
+        else if (student.getGrade() < 5.00 && student.getGrade() >= 3.50)
             return "Average student.";
-
-        }
 
         return "Very nice person.";
 

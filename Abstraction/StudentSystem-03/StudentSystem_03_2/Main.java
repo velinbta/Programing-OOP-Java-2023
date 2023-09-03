@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 // Рефакториране на класовете по условие
 public class Main {
-    private static final String exit = "Exit";
+    private static final String EXIT_COMMAND = "Exit";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -13,7 +13,7 @@ public class Main {
 
         String input = scanner.nextLine();
 
-        while (!input.equals(exit)) {
+        while (!input.equals(EXIT_COMMAND)) {
 
             String[] data = input.split("\\s+");
 
