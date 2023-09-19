@@ -2,7 +2,6 @@ package ShoppingSpree_03_1;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Person {
@@ -18,16 +17,12 @@ public class Person {
     }
 
     private void setName(String name) {
-        // Not null or blank
-        if (Objects.isNull(name) || name.isBlank())
-            throw stateException("Name cannot be empty");
+        Validator.validateName(name); // <- Not null or blank
         this.name = name;
     }
 
     private void setMoney(double money) {
-        // Not negative
-        if (money < 0D)
-            throw stateException("Money cannot be negative");
+        Validator.validateMoney(money); // <- Not negative
         this.money = money;
     }
 
@@ -36,7 +31,7 @@ public class Person {
         double result = this.getMoney() - product.getCost();
 
         if (result < 0D) { // <- Does not have enough money
-            throw stateException(String.format("%s can't afford %s", this.getName(), product));
+            throw new IllegalStateException(String.format("%s can't afford %s", this.getName(), product));
         }
 
         this.setMoney(result);
@@ -50,10 +45,6 @@ public class Person {
 
     public double getMoney() {
         return this.money;
-    }
-
-    private IllegalStateException stateException(String message) {
-        throw new IllegalStateException(message);
     }
 
     @Override

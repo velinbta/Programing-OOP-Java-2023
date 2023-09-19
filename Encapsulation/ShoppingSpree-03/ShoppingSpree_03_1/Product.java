@@ -1,7 +1,5 @@
 package ShoppingSpree_03_1;
 
-import java.util.Objects;
-
 public class Product {
 
     private String name;
@@ -13,16 +11,12 @@ public class Product {
     }
 
     private void setName(String name) {
-        // Not null or blank
-        if (Objects.isNull(name) || name.isBlank())
-            throw stateException("Name cannot be empty");
+        Validator.validateName(name); // <- Not null or blank
         this.name = name;
     }
 
     private void setCost(double cost) {
-        // Not negative
-        if (cost < 0D)
-            throw stateException("Money cannot be negative");
+        Validator.validateMoney(cost); // <- Not negative
         this.cost = cost;
     }
 
@@ -32,10 +26,6 @@ public class Product {
 
     public double getCost() {
         return this.cost;
-    }
-
-    private IllegalStateException stateException(String message) {
-        throw new IllegalStateException(message);
     }
 
     @Override
