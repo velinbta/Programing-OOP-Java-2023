@@ -25,6 +25,13 @@ public class Main {
             String command = data[0];
             String teamName = data[1];
 
+            if (teamInvalid(command, teamsInfo, teamName)) {
+                // If command is not TEAM_ADD_COMMAND
+                printTeamNotExist(teamName);
+                input = scanner.nextLine();
+                continue;
+            }
+
             switch (command) {
 
                 case TEAM_ADD_COMMAND:
@@ -34,11 +41,6 @@ public class Main {
                     break;
 
                 case ADD_PLAYER_COMMAND: {
-
-                    if (!teamExist(teamsInfo, teamName)) { // <- if no such team
-                        printTeamNotExist(teamName);
-                        break;
-                    }
 
                     String playerName = data[2];
                     int endurance = Integer.parseInt(data[3]);
@@ -54,23 +56,12 @@ public class Main {
 
                 case REMOVE_PLAYER_COMMAND:
 
-                    if (!teamExist(teamsInfo, teamName)) { // <- if no such team
-                        printTeamNotExist(teamName);
-                        break;
-                    }
-
                     String playerName = data[2];
-
                     removePlayer(teamsInfo, teamName, playerName); // <- if exists
 
                     break;
 
                 case RATING_TEAM_COMMAND:
-
-                    if (!teamExist(teamsInfo, teamName)) { // <- if no such team
-                        printTeamNotExist(teamName);
-                        break;
-                    }
 
                     System.out.printf("%s - %.0f%n", teamName,
                             teamsInfo.get(teamName).getRating());
@@ -81,7 +72,6 @@ public class Main {
 
             input = scanner.nextLine();
         }
-
 
     }
 
@@ -122,8 +112,8 @@ public class Main {
 
     }
 
-    private static boolean teamExist(Map<String, Team> teamsInfo, String teamName) {
-        return teamsInfo.containsKey(teamName);
+    private static boolean teamInvalid(String command, Map<String, Team> teamsInfo, String teamName) {
+        return !command.equals(TEAM_ADD_COMMAND) && !teamsInfo.containsKey(teamName);
     }
 
     private static void printTeamNotExist(String teamName) {

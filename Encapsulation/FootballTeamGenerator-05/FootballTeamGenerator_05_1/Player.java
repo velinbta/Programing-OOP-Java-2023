@@ -22,7 +22,7 @@ public class Player {
 
     public double overallSkillLevel() {
         // Average skills for this player
-        return Math.round((this.endurance + this.sprint + this.dribble + this.passing + this.shooting) / 5.00);
+        return Math.round((this.endurance + this.sprint + this.dribble + this.passing + this.shooting) / 5D);
     }
 
     private void setName(String name) {
