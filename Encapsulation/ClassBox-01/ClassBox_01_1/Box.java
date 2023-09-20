@@ -2,7 +2,7 @@ package ClassBox_01_1;
 
 public class Box {
 
-    private static final double TWO = 2.00;
+    private static final double TWO = 2D;
 
     private double length;
     private double width;
@@ -27,7 +27,7 @@ public class Box {
     }
 
     private void ensurePositiveParameter(double parameter, String prefix) {
-        if (parameter < 1)
+        if (parameter <= 0)
             throw new IllegalStateException(String.format("%s cannot be zero or negative.", prefix));
     }
 
