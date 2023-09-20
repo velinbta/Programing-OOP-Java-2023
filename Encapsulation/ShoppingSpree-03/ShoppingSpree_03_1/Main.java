@@ -1,6 +1,7 @@
 package ShoppingSpree_03_1;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class Main {
 
@@ -9,8 +10,33 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Map<String, Person> peopleInfo = addCorrectStatePeople(scanner);
-        Map<String, Product> productsInfo = addCorrectStateProducts(scanner);
+        Map<String, Person> peopleInfo = new LinkedHashMap<>();
+        Map<String, Product> productsInfo = new HashMap<>();
+
+        String[] peopleAsArray = scanner.nextLine().split(";", -1);
+        String[] productsAsArray = scanner.nextLine().split(";", -1);
+
+        for (String people : peopleAsArray) {
+            // If invalid prints the message and returns
+            Optional<?> optional = getOptionalOrCatchException("Person").apply(people);
+            if (optional.isEmpty()) {
+                return;
+            }
+            Person person = (Person) optional.get();
+            peopleInfo.putIfAbsent(person.getName(), person);
+
+        }
+
+        for (String p : productsAsArray) {
+            // If invalid prints the message and returns
+            Optional<?> optional = getOptionalOrCatchException("Product").apply(p);
+            if (optional.isEmpty()) {
+                return;
+            }
+            Product product = (Product) optional.get();
+            productsInfo.putIfAbsent(product.getName(), product);
+
+        }
 
         String input = scanner.nextLine();
 
@@ -23,7 +49,7 @@ public class Main {
             Person person = peopleInfo.get(personName);
             Product product = productsInfo.get(productName);
 
-            if (Objects.isNull(person) || Objects.isNull(product)) { // <- If are not correct, so not added
+            if (Objects.isNull(person) || Objects.isNull(product)) { // <- Ignore if invalid
                 input = scanner.nextLine();
                 continue;
             }
@@ -38,52 +64,38 @@ public class Main {
 
     }
 
-    private static Map<String, Person> addCorrectStatePeople(Scanner scanner) {
+    private static Function<String, Optional<?>> getOptionalOrCatchException(String optionalParameter) {
 
-        Map<String, Person> peopleInfo = new LinkedHashMap<>();
+        // Function to return Optional<?> depending on given parameter
+        return s -> {
 
-        // Creates and adds only correct state peopleInfo
-        Arrays.stream(scanner.nextLine().split("\\s*;\\s*")).map(person -> {
-            String[] data = person.split("\\s*=\\s*");
+            String[] data = s.split("=", -1);
             String name = data[0];
             double money = Double.parseDouble(data[1]);
 
-            Optional<Person> optional = Optional.empty();
+            Optional<?> optional = Optional.empty();
 
             try {
-                optional = Optional.of(new Person(name, money));
-            } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
+
+                switch (optionalParameter) {
+
+                    case "Person":
+                        optional = Optional.of(new Person(name, money));
+                        break;
+
+                    case "Product":
+                        optional = Optional.of(new Product(name, money));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid parameter " + optionalParameter);
+                }
+
+            } catch (IllegalStateException exception) {
+                System.out.println(exception.getMessage());
             }
 
             return optional;
-        }).forEach(person -> person.ifPresent(p -> peopleInfo.putIfAbsent(p.getName(), p)));
-
-        return peopleInfo;
-    }
-
-    private static Map<String, Product> addCorrectStateProducts(Scanner scanner) {
-
-        Map<String, Product> productsInfo = new HashMap<>();
-
-        // Creates and adds only correct state productsInfo
-        Arrays.stream(scanner.nextLine().split("\\s*;\\s*")).map(product -> {
-            String[] data = product.split("\\s*=\\s*");
-            String name = data[0];
-            double cost = Double.parseDouble(data[1]);
-
-            Optional<Product> optional = Optional.empty();
-
-            try {
-                optional = Optional.of(new Product(name, cost));
-            } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
-            }
-
-            return optional;
-        }).forEach(product -> product.ifPresent(p -> productsInfo.putIfAbsent(p.getName(), p)));
-
-        return productsInfo;
+        };
     }
 
     private static void tryToBuy(Person person, Product product) {
@@ -94,9 +106,7 @@ public class Main {
             System.out.printf("%s bought %s\n", person.getName(), product);
 
         } catch (IllegalStateException e) {
-
             System.out.println(e.getMessage());
-
         }
 
     }
