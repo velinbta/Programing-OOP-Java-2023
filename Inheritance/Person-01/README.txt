@@ -1,5 +1,5 @@
 1. Person 
-NOTE: You need a public class Main. Create a package person.
+Create a package person.
 You are asked to model an application for storing data about people.
 You should be able to have a Person and a Child.
 The child derives from the person. Every person has a name and an age.

@@ -1,4 +1,5 @@
 2. Zoo
+Create a package zoo.
 Create following classes' hierarchy:
 
 Animal
@@ -10,7 +11,6 @@ Animal
 Mammal <- Animal
 Gorilla <- Mammal
 Bear <- Mammal
-
 
 Follow the diagram and create all the classes.
 Each of them, except the Animal class, should inherit from another class.

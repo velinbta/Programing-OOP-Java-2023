@@ -1,4 +1,4 @@
-package Person_01_1;
+package person;
 
 public class Child extends Person {
 

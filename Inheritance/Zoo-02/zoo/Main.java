@@ -1,4 +1,4 @@
-package Zoo_02_1;
+package zoo;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

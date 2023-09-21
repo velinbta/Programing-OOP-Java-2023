@@ -1,4 +1,4 @@
-package Zoo_02_1;
+package zoo;
 
 public class Gorilla extends Mammal {
 
