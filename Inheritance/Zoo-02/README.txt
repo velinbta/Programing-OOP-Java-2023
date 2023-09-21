@@ -1,9 +1,16 @@
-2. Zoo 
+2. Zoo
 Create following classes' hierarchy:
 
-		  	  Animal		
-	Reptile           		    Mammal
-     Lizard Snake	 		  Gorilla Bear
+Animal
+Reptile <- Animal
+Lizard <- Reptile
+Snake <- Reptile
+
+Animal
+Mammal <- Animal
+Gorilla <- Mammal
+Bear <- Mammal
+
 
 Follow the diagram and create all the classes.
 Each of them, except the Animal class, should inherit from another class.
