@@ -10,6 +10,7 @@ public interface Car extends Serializable {
 
     String getColor();
 
+    // Wrapper required
     Integer getHorsePower();
 
     // No "get" requirement
