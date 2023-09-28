@@ -3,7 +3,7 @@ package MilitaryElite_06_1;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Engineer extends SpecialisedSoldier {
+public class Engineer extends BaseSpecialisedSoldier {
 
     private final Collection<Repair> repairs;
 

@@ -1,7 +1,7 @@
 package MilitaryElite_06_1;
 
 // Should be inherited
-public abstract class Soldier {
+public abstract class BaseSoldier {
 
     public static final int DEFAULT_SIZE = 5;
 
@@ -9,7 +9,7 @@ public abstract class Soldier {
     private final String firstName;
     private final String lastName;
 
-    protected Soldier(int id, String firstName, String lastName) {
+    protected BaseSoldier(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

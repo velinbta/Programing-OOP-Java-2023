@@ -1,6 +1,6 @@
 package MilitaryElite_06_1;
 
-public class Private extends Soldier {
+public class Private extends BaseSoldier {
 
     private final double salary;
 

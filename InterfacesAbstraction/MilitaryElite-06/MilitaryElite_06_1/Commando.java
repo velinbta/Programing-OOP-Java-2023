@@ -3,7 +3,7 @@ package MilitaryElite_06_1;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Commando extends SpecialisedSoldier {
+public class Commando extends BaseSpecialisedSoldier {
 
     private final Collection<Mission> missions;
 

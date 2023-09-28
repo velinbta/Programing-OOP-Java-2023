@@ -1,7 +1,7 @@
 package MilitaryElite_06_1;
 
 // Should be inherited
-public abstract class SpecialisedSoldier extends Private {
+public abstract class BaseSpecialisedSoldier extends Private {
 
     public enum Corps {
 
@@ -51,7 +51,7 @@ public abstract class SpecialisedSoldier extends Private {
 
     private final Corps corps;
 
-    protected SpecialisedSoldier(int id, String firstName, String lastName, double salary, Corps corps) {
+    protected BaseSpecialisedSoldier(int id, String firstName, String lastName, double salary, Corps corps) {
         super(id, firstName, lastName, salary);
         this.corps = corps;
     }

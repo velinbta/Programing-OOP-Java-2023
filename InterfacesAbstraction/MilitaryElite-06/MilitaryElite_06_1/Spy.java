@@ -1,6 +1,6 @@
 package MilitaryElite_06_1;
 
-public class Spy extends Soldier {
+public class Spy extends BaseSoldier {
 
     private final String codeNumber;
 

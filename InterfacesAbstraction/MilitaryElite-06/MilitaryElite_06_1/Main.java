@@ -16,14 +16,14 @@ public class Main {
 
         String input = scanner.nextLine();
 
-        Collection<Soldier> soldiers = new ArrayList<>();
+        Collection<BaseSoldier> soldiers = new ArrayList<>();
 
         while (!input.equals(END_COMMAND)) {
 
             String[] data = input.split("\\s+");
 
             // in case of invalid Corps
-            Optional<Soldier> soldier = getSoldier(data, soldiers);
+            Optional<BaseSoldier> soldier = getSoldier(data, soldiers);
             soldier.ifPresent(soldiers::add);
 
             input = scanner.nextLine();
@@ -34,8 +34,8 @@ public class Main {
 
     }
 
-    private static Optional<Soldier> getSoldier(String[] data, Collection<Soldier> soldiers) {
-        // returns Optional of Soldier based on command - data[0]
+    private static Optional<BaseSoldier> getSoldier(String[] data, Collection<BaseSoldier> soldiers) {
+        // returns Optional of BaseSoldier based on command - data[0]
         int dataSize = data.length;
         String command = data[0];
         int id = Integer.parseInt(data[1]);
