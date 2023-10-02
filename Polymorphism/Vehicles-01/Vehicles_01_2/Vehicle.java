@@ -10,7 +10,17 @@ public abstract class Vehicle {
         this.setLitersPerKm(litersPerKm);
     }
 
-    public abstract boolean drive(double distance);
+    public boolean drive(double distance) {
+        this.ensurePositiveParameter(distance, "Distance");
+
+        double consumption = this.calculateConsumption(distance);
+        boolean canDrive = consumption <= this.getFuelQuantity();
+
+        if (canDrive)
+            this.setFuelQuantity(this.getFuelQuantity() - consumption);
+
+        return canDrive;
+    }
 
     public abstract void refuel(double liters);
 

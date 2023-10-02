@@ -10,19 +10,6 @@ public class Truck extends Vehicle {
     }
 
     @Override
-    public boolean drive(double distance) {
-        ensurePositiveParameter(distance, "Distance");
-
-        double consumption = this.calculateConsumption(distance);
-        boolean canDrive = consumption <= this.getFuelQuantity();
-
-        if (canDrive)
-            this.setFuelQuantity(this.getFuelQuantity() - consumption);
-
-        return canDrive;
-    }
-
-    @Override
     public void refuel(double liters) {
         this.ensurePositiveParameter(liters, "Liters");
         // 95%
