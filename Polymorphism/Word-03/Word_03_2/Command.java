@@ -2,16 +2,16 @@ package Word_03_2;
 
 public class Command {
 
-    private final String text;
+    private final String name;
     private final TextTransform textTransform;
 
-    public Command(String text, TextTransform textTransform){
-        this.text = text;
+    public Command(String name, TextTransform textTransform){
+        this.name = name;
         this.textTransform = textTransform;
     }
 
-    public String getText() {
-        return this.text;
+    public String getName() {
+        return this.name;
     }
 
     public TextTransform getTextTransform() {

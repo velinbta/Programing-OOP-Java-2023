@@ -18,7 +18,7 @@ public class CommandInterfaceImpl implements CommandInterface {
         this.commandTransforms.clear();
 
         for (Command command : this.initCommands()) {
-            this.commandTransforms.putIfAbsent(command.getText(), command.getTextTransform());
+            this.commandTransforms.putIfAbsent(command.getName(), command.getTextTransform());
         }
 
     }
