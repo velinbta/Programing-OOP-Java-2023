@@ -15,6 +15,8 @@ public class DivisionOperation implements Operation {
     @Override
     public void addOperand(int operand) {
 
+        validateOperand(operand);
+
         this.operands.add(operand);
 
         if (this.isCompleted()) {
@@ -31,6 +33,11 @@ public class DivisionOperation implements Operation {
     @Override
     public boolean isCompleted() {
         return this.operands.size() == 2;
+    }
+
+    private void validateOperand(int operand) {
+        if (this.operands.size() == 1 && operand == 0)
+            throw new ArithmeticException("Can't divide by zero");
     }
 
 }
