@@ -8,7 +8,7 @@ Sort each collection alphabetically by methods names. Print to console each gett
 Then print all setters in the format:
 "{name} and will set field of class {Parameter Type}"
 
-Output:
+Output: (Not included in task)
 getEmail will return class java.lang.String
 getName will return class java.lang.String
 getWebAddress will return class java.lang.String

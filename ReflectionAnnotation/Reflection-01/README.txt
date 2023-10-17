@@ -8,7 +8,7 @@ Instantiate object using reflection and print it too
 
 Don't change anything in "Reflection class"!
 
-Output:
+Output: (Not included in task)
 class Reflection
 class java.lang.Object
 interface java.io.Serializable
