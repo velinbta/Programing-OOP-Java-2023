@@ -10,6 +10,7 @@ public class Main {
 
         Class<Reflection> clazz = Reflection.class;
 
+        // all methods declared withing the class
         Method[] methods = clazz.getDeclaredMethods();
 
         // by name alphabetically

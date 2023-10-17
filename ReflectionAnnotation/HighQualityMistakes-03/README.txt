@@ -8,3 +8,11 @@ Print on the console all mistakes in the format:
 For Fields: "{fieldName} must be private!"
 For Getters: "{methodName} have to be public!"
 For Setters: "{methodName} have to be private!"
+
+Output: (Not included in task)
+email must be private!
+name must be private!
+webAddress must be private!
+getWebAddress have to be public!
+getZip have to be public!
+setEmail have to be private!
