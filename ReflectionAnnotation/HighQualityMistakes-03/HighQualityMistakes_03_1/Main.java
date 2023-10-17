@@ -12,9 +12,10 @@ public class Main {
         Class<Reflection> clazz = Reflection.class;
 
         Set<Field> fields = getFieldsOrderedByName(clazz);
-        Set<Method> getters = getMethodsFilteredByCondition(clazz, m -> m.getName().startsWith("get"));
-        Set<Method> setters = getMethodsFilteredByCondition(clazz, m -> m.getName().startsWith("set"));
+        Set<Method> getters = getMethodsFilteredByConditionOrderedByName(clazz, m -> m.getName().startsWith("get"));
+        Set<Method> setters = getMethodsFilteredByConditionOrderedByName(clazz, m -> m.getName().startsWith("set"));
 
+        // decoded by class Modifier and printed
         fields.forEach(field -> {
             int modifiers = field.getModifiers();
 
@@ -48,7 +49,8 @@ public class Main {
         return fields;
     }
 
-    private static Set<Method> getMethodsFilteredByCondition(Class<Reflection> clazz, Predicate<Method> condition) {
+    private static Set<Method> getMethodsFilteredByConditionOrderedByName(Class<Reflection> clazz,
+                                                                          Predicate<Method> condition) {
         // creates new Set<Method> ordered by name
         Set<Method> methods = new TreeSet<>(new MemberNameComparator());
 
