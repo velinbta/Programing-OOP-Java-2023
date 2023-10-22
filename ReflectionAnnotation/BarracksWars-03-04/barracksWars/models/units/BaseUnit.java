@@ -2,12 +2,12 @@ package barracksWars.models.units;
 
 import barracksWars.interfaces.Unit;
 
-public abstract class AbstractUnit implements Unit {
+public abstract class BaseUnit implements Unit {
 
     private int health;
     private int attackDamage;
     
-    protected AbstractUnit(int health, int attackDamage) {
+    protected BaseUnit(int health, int attackDamage) {
         this.initHealth(health);
         this.setAttackDamage(attackDamage);
     }

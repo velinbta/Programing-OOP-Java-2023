@@ -1,6 +1,6 @@
 package barracksWars.models.units;
 
-public class Horseman extends AbstractUnit {
+public class Horseman extends BaseUnit {
 
     private static final int HORSEMAN_HEALTH = 50;
     private static final int HORSEMAN_DAMAGE = 10;
