@@ -1,41 +1,46 @@
 package GettersAndSetters_02_1;
 
+import java.lang.reflect.Member;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Main {
+
+    private static final String GETTERS_FORMAT = "%s will return class %s";
+    private static final String SETTERS_FORMAT = "%s and will set field of class %s";
+
     public static void main(String[] args) {
 
         Class<Reflection> clazz = Reflection.class;
 
-        // all methods declared withing the class
-        Method[] methods = clazz.getDeclaredMethods();
+        Comparator<Member> nameComparator = Comparator.comparing(Member::getName);
 
-        // by name alphabetically
-        Set<Method> getters = new TreeSet<>(new MethodNameComparator());
-        Set<Method> setters = new TreeSet<>(new MethodNameComparator());
+        Set<Method> getters = new TreeSet<>(nameComparator);
+        Set<Method> setters = new TreeSet<>(nameComparator);
 
-        Arrays.stream(methods).forEach(method -> {
-            String methodName = method.getName();
-            boolean isGetter = methodName.startsWith("get");
-            boolean isSetter = methodName.startsWith("set");
-
-            if (isGetter) getters.add(method);
-            else if (isSetter) setters.add(method);
-        });
-
-        for (Method getter : getters) {
-            System.out.printf("%s will return class %s\n", getter.getName(),
-                    getter.getReturnType().getName());
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (isGetter(method)) getters.add(method);
+            else if (isSetter(method)) setters.add(method);
         }
 
-        for (Method setter : setters) {
-            System.out.printf("%s and will set field of class %s\n", setter.getName(),
-                    setter.getParameterTypes()[0].getName());
-        }
+        getters.forEach(m -> System.out.printf(GETTERS_FORMAT, m.getName(),
+                m.getReturnType().getName() + System.lineSeparator()));
 
+        setters.forEach(m -> System.out.printf(SETTERS_FORMAT, m.getName(),
+                m.getParameterTypes()[0].getName() + System.lineSeparator()));
+
+    }
+
+    private static boolean isGetter(Method method) {
+        // starts with get, has 0 parameters and doesn't return void
+        return method.getName().startsWith("get") && method.getParameterCount() == 0
+                && !method.getReturnType().equals(void.class);
+    }
+
+    private static boolean isSetter(Method method) {
+        // starts with set has 1 parameter and returns void
+        return method.getName().startsWith("set") && method.getParameterCount() == 1
+                && method.getReturnType().equals(void.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package GettersAndSetters_02_1;
+package GettersAndSetters_02_2;
 
 import java.lang.reflect.Method;
 import java.util.Comparator;
