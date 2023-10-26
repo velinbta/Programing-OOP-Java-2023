@@ -5,7 +5,7 @@ import infernoInfinity_1.Gem;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class Weapon {
+public abstract class Weapon implements Comparable<Weapon> {
 
     private final String name;
     private final int numberOfSockets;
@@ -70,6 +70,28 @@ public abstract class Weapon {
 
     private boolean canAdd(int socketIndex) {
         return socketIndex >= 0 && socketIndex < this.numberOfSockets;
+    }
+
+    @Override
+    public int compareTo(Weapon other) {
+        double first = this.calculateItemLevel();
+        double second = other.calculateItemLevel();
+
+        double result = Double.compare(first, second);
+
+        if (result == 0D)
+            return (int) this.calculateItemLevel();
+
+        return (int) result;
+    }
+
+    public double calculateItemLevel() {
+        return ((double) (this.minDamage + this.maxDamage) / 2) +
+                this.strength + this.agility + this.vitality;
+    }
+
+    public String getToStringPlusItemLevel() {
+        return String.format("%s (Item Level: %.1f)", this, this.calculateItemLevel());
     }
 
     @Override

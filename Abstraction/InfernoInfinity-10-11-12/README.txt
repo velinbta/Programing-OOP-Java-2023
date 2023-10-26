@@ -51,3 +51,35 @@ If you haven't already, override the toString() method of the Weapon class you h
 Try using the @Override annotation.
 Note 
 Pay attention to the actual overriding of the method.
+
+
+12. *Inferno Infinity - @Override the compareTo() Method 
+Extend your solution a bit further by making your Weapon class to be comparable to other weapons.
+Every weapon should have an item level which is calculated by the average of the min and max damage, plus every additional stat it has.
+Consider the Axe of Misfortune imbued with a Ruby from the zero tests:
+Axe of Misfortune Item Level: ((21 + 39) / 2) + 7 + 2 + 5 = 44.0
+
+Implement additional Print (prints the greater weapon with its item level).
+Implement Compare command, which compares two weapons by their non-rounded item level and prints the greater of two weapons' name and its item level.
+Display one numbers after the decimal separator (e.g. 54.40123 == 54.4):
+
+Compare;{weapon name};{weapon name}
+Print the greater of the two weapons in the following format:
+"{weapon's name}: {min damage}-{max damage} Damage, +{points} Strength, +{points} Agility, +{points} Vitality (Item Level: {items level})" 
+If both weapons have equal item level, print the first one. 
+Note 
+Pay attention to the actual overriding of the method.
+
+Example:
+
+Input:
+Create;AXE;Axe of Misfortune
+Add;Axe of Misfortune;0;RUBY
+Create;KNIFE;Thieves Blade
+Add;Thieves Blade;0;AMETHYST
+Add;Thieves Blade;1;AMETHYST
+Compare;Axe of Misfortune;Thieves Blade
+END
+
+Output:
+Thieves Blade: 27-80 Damage, +4 Strength, +16 Agility, +8 Vitality (Item Level: 81.5)

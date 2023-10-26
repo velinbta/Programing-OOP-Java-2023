@@ -16,6 +16,7 @@ public class Main {
     public static final String ADD_COMMAND = "Add";
     public static final String REMOVE_COMMAND = "Remove";
     public static final String PRINT_COMMAND = "Print";
+    public static final String COMPARE_COMMAND = "Compare";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -73,6 +74,22 @@ public class Main {
 
                 }
                 break;
+
+                case COMPARE_COMMAND:
+
+                    String firstWeaponName = data[1];
+                    String secondWeaponName = data[2];
+
+                    Weapon firstWeapon = weaponsByName.get(firstWeaponName);
+                    Weapon secondWeapon = weaponsByName.get(secondWeaponName);
+
+                    String greaterWeapon = firstWeapon.compareTo(secondWeapon) < 0
+                            ? secondWeapon.getToStringPlusItemLevel()
+                            : firstWeapon.getToStringPlusItemLevel();
+
+                    System.out.println(greaterWeapon);
+
+                    break;
 
                 default:
                     throw new IllegalArgumentException("Invalid command " + command);
