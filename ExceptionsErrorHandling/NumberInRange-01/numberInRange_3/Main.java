@@ -5,8 +5,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static class NumberOutOfRangeException extends RuntimeException {
-        NumberOutOfRangeException(String message) {
+    public static class NumberOutOfRangeException extends IllegalArgumentException {
+        public NumberOutOfRangeException() {
+            super();
+        }
+
+        public NumberOutOfRangeException(String message) {
             super(message);
         }
     }
@@ -37,7 +41,7 @@ public class Main {
                 printTextPlusNumber("Valid", String.valueOf(next));
 
                 break;
-            } catch (NumberFormatException | NumberOutOfRangeException e) {
+            } catch (IllegalArgumentException e) {
                 printTextPlusNumber("Invalid", input);
             }
 
