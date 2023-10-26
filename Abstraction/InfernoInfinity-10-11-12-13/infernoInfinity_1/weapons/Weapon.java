@@ -1,10 +1,12 @@
 package infernoInfinity_1.weapons;
 
 import infernoInfinity_1.Gem;
+import infernoInfinity_1.data.Information;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Information()
 public abstract class Weapon implements Comparable<Weapon> {
 
     private final String name;

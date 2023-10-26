@@ -83,3 +83,34 @@ END
 
 Output:
 Thieves Blade: 27-80 Damage, +4 Strength, +16 Agility, +8 Vitality (Item Level: 81.5)
+
+
+Problem 13. *Create Custom Class Annotation
+Create a custom annotation that can be applied to class and can be accessed at runtime.
+The annotation type elements it should contain are author, revision, description and reviewers.
+Apply the annotation to the Weapon class you have created for the Inferno Infinity problem.
+Provide these exact values:
+author = "Pesho"
+revision = 3
+description = "Used for Java OOP Advanced course - Enumerations and Annotations."
+reviewers = "Pesho", "Svetlio"
+Implement additional commands for extracting different annotation values:
+Author - prints the author of the class
+Revision - prints the revision of the class
+Description - prints the class description
+Reviewers - prints the reviewers of the class
+
+Examples:
+
+Input:
+Author
+Revision
+Description
+Reviewers
+END
+
+Output:
+Author: Pesho
+Revision: 3
+Class description: Used for Java OOP Advanced course - Enumerations and Annotations.
+Reviewers: Pesho, Svetlio
