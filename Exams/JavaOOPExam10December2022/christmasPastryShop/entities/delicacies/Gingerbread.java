@@ -1,0 +1,11 @@
+package christmasPastryShop.entities.delicacies;
+
+public class Gingerbread extends BaseDelicacy {
+
+    private static final double INITIAL_GINGERBREAD_PORTION = 200D;
+
+    public Gingerbread(String name, double price) {
+        super(name, INITIAL_GINGERBREAD_PORTION, price);
+    }
+
+}
