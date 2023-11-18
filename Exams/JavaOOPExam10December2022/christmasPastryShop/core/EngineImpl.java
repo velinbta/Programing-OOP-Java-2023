@@ -3,6 +3,7 @@ package christmasPastryShop.core;
 import christmasPastryShop.common.ExceptionMessages;
 import christmasPastryShop.common.enums.Command;
 import christmasPastryShop.core.interfaces.Controller;
+import christmasPastryShop.core.interfaces.Engine;
 import christmasPastryShop.io.ConsoleReader;
 import christmasPastryShop.io.ConsoleWriter;
 
@@ -10,13 +11,13 @@ import java.io.IOException;
 import java.util.Arrays;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class Engine implements Runnable {
+public class EngineImpl implements Engine {
 
     private ConsoleReader reader;
     private ConsoleWriter writer;
     private Controller controller;
 
-    public Engine(ConsoleReader reader, ConsoleWriter writer, Controller controller) {
+    public EngineImpl(ConsoleReader reader, ConsoleWriter writer, Controller controller) {
         this.reader = reader;
         this.writer = writer;
         this.controller = controller;

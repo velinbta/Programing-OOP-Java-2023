@@ -1,12 +1,13 @@
 package christmasPastryShop.repositories;
 
-import christmasPastryShop.entities.booths.interfaces.Booth;
+import christmasPastryShop.entities.booths.BaseBooth;
 import christmasPastryShop.repositories.interfaces.BoothRepository;
 
-public class BoothRepositoryImpl extends RepositoryImpl<Booth> implements BoothRepository<Booth> {
+// BaseBooth only because of OJS
+public class BoothRepositoryImpl extends RepositoryImpl<BaseBooth> implements BoothRepository<BaseBooth> {
 
     @Override
-    public Booth getByNumber(int number) {
+    public BaseBooth getByNumber(int number) {
         return this.getAll().stream().filter(booth -> booth.getBoothNumber() == number).
                 findFirst().orElse(null);
     }

@@ -6,6 +6,7 @@ import christmasPastryShop.common.enums.BoothType;
 import christmasPastryShop.common.enums.CocktailType;
 import christmasPastryShop.common.enums.DelicacyType;
 import christmasPastryShop.core.interfaces.Controller;
+import christmasPastryShop.entities.booths.BaseBooth;
 import christmasPastryShop.entities.booths.OpenBooth;
 import christmasPastryShop.entities.booths.PrivateBooth;
 import christmasPastryShop.entities.booths.interfaces.Booth;
@@ -26,12 +27,12 @@ public class ControllerImpl implements Controller {
 
     private DelicacyRepository<Delicacy> delicacyRepository;
     private CocktailRepository<Cocktail> cocktailRepository;
-    private BoothRepository<Booth> boothRepository;
+    private BoothRepository<BaseBooth> boothRepository;
     private double totalIncome;
 
     public ControllerImpl(DelicacyRepository<Delicacy> delicacyRepository,
                           CocktailRepository<Cocktail> cocktailRepository,
-                          BoothRepository<Booth> boothRepository) {
+                          BoothRepository<BaseBooth> boothRepository) {
         this.delicacyRepository = delicacyRepository;
         this.cocktailRepository = cocktailRepository;
         this.boothRepository = boothRepository;
@@ -75,7 +76,7 @@ public class ControllerImpl implements Controller {
             throw new IllegalArgumentException(String.format(ExceptionMessages.BOOTH_EXIST, boothNumber));
         }
 
-        Booth newBooth = this.getBooth(type, boothNumber, capacity);
+        BaseBooth newBooth = this.getBooth(type, boothNumber, capacity);
 
         this.boothRepository.add(newBooth);
 
@@ -118,7 +119,7 @@ public class ControllerImpl implements Controller {
     @Override
     public String orderDelicacy(int boothNumber, String delicacyName) {
 
-        Booth booth = boothRepository.getByNumber(boothNumber);
+        BaseBooth booth = boothRepository.getByNumber(boothNumber);
         Delicacy food = delicacyRepository.getByName(delicacyName);
 
         if (Objects.isNull(booth) || !booth.isReserved()) {
@@ -137,7 +138,7 @@ public class ControllerImpl implements Controller {
     @Override
     public String orderCocktail(int boothNumber, String cocktailName, String cocktailBrand) {
 
-        Booth booth = boothRepository.getByNumber(boothNumber);
+        BaseBooth booth = boothRepository.getByNumber(boothNumber);
         Cocktail cocktail = cocktailRepository.getByName(cocktailName);
 
         if (Objects.isNull(booth) || !booth.isReserved()) {
@@ -159,7 +160,7 @@ public class ControllerImpl implements Controller {
         return String.format(OutputMessages.TOTAL_INCOME, this.totalIncome);
     }
 
-    private Booth getBooth(String type, int boothNumber, int capacity) {
+    private BaseBooth getBooth(String type, int boothNumber, int capacity) {
 
         switch (BoothType.parseBooth(type)) {
 

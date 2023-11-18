@@ -15,6 +15,7 @@ public abstract class BaseBooth implements Booth {
     private Collection<Cocktail> cocktailOrders;
     private int boothNumber;
     private int capacity;
+    private int numberOfPeople;
     private double pricePerPerson;
     private boolean isReserved;
     private double price;
@@ -34,20 +35,11 @@ public abstract class BaseBooth implements Booth {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_NUMBER_OF_PEOPLE);
         }
 
+        this.numberOfPeople = numberOfPeople;
         this.isReserved = true;
 
         this.setPrice(this.calculateBoothPrice(numberOfPeople));
 
-    }
-
-    @Override
-    public void orderDelicacy(Delicacy food) {
-        this.delicacyOrders.add(food);
-    }
-
-    @Override
-    public void orderCocktail(Cocktail cocktail) {
-        this.cocktailOrders.add(cocktail);
     }
 
     @Override
@@ -60,10 +52,20 @@ public abstract class BaseBooth implements Booth {
     public void clear() {
 
         this.isReserved = false;
+        this.numberOfPeople = 0;
         this.cocktailOrders.clear();
         this.delicacyOrders.clear();
         this.setPrice(0D);
 
+    }
+
+    // order methods not in interface only because of OJS
+    public void orderDelicacy(Delicacy food) {
+        this.delicacyOrders.add(food);
+    }
+
+    public void orderCocktail(Cocktail cocktail) {
+        this.cocktailOrders.add(cocktail);
     }
 
     private double calculateBoothPrice(int numberOfPeople) {
