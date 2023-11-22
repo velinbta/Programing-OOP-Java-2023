@@ -79,8 +79,8 @@ public class Engine implements Runnable {
                 return this.controller.createCar(type, model, horsePower);
             }
             case CREATE_RACE: {
-                String raceName = data[0];
-                int laps = Integer.parseInt(data[1]);
+                String raceName = data[1];
+                int laps = Integer.parseInt(data[2]);
                 return this.controller.createRace(raceName, laps);
             }
             case END:
