@@ -26,7 +26,7 @@ public abstract class BaseGun implements Gun {
     @Override
     public int fire() {
 
-        if (!this.canFire()) {
+        if (!this.canFire) {
             return 0;
         }
 
