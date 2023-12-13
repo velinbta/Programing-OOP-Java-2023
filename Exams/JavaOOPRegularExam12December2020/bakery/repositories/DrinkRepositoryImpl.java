@@ -26,7 +26,7 @@ public class DrinkRepositoryImpl implements DrinkRepository<Drink> {
     }
 
     @Override
-    public Drink getByNameAndBrand(String drinkName, String drinkBrand) { // TODO
+    public Drink getByNameAndBrand(String drinkName, String drinkBrand) {
         return this.drinks.stream().filter(drink -> drink.getName().equals(drinkName) &&
                 drink.getBrand().equals(drinkBrand)).findFirst().orElse(null);
     }
