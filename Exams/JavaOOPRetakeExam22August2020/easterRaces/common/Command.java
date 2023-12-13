@@ -1,4 +1,4 @@
-package christmasRaces.common;
+package easterRaces.common;
 
 public enum Command {
 

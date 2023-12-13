@@ -1,7 +1,7 @@
-package christmasRaces.entities.drivers;
+package easterRaces.entities.drivers;
 
-import christmasRaces.common.ExceptionMessage;
-import christmasRaces.entities.cars.Car;
+import easterRaces.common.ExceptionMessage;
+import easterRaces.entities.cars.Car;
 
 import java.util.Objects;
 
@@ -16,9 +16,25 @@ public class DriverImpl implements Driver {
         this.setName(name);
     }
 
+    @Override
+    public void addCar(Car car) {
+        if (Objects.isNull(car)) {
+            throw new IllegalArgumentException(ExceptionMessage.CAR_INVALID);
+        }
+
+        this.car = car;
+        this.canParticipate = true;
+    }
+
+    @Override
+    public void winRace() {
+        this.numberOfWins++;
+    }
+
     private void setName(String name) {
         if (Objects.isNull(name) || name.isBlank() || name.length() < 5) {
-            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_NAME_FORMAT, name, 5));
+            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_NAME_FORMAT,
+                    name, 5));
         }
         this.name = name;
     }
@@ -36,20 +52,6 @@ public class DriverImpl implements Driver {
     @Override
     public int getNumberOfWins() {
         return this.numberOfWins;
-    }
-
-    @Override
-    public void addCar(Car car) {
-        if (Objects.isNull(car)) {
-            throw new IllegalArgumentException(ExceptionMessage.CAR_INVALID);
-        }
-        this.car = car;
-        this.canParticipate = true;
-    }
-
-    @Override
-    public void winRace() {
-        this.numberOfWins++;
     }
 
     @Override

@@ -1,6 +1,10 @@
-package christmasRaces.common;
+package easterRaces.common;
 
-public class OutputMessages {
+public class OutputMessage {
+
+    private OutputMessage() {
+
+    }
 
     public static final String CAR_CREATED_FORMAT = "%s %s is created.";
 

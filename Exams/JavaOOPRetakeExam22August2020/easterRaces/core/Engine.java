@@ -1,12 +1,12 @@
-package christmasRaces.core;
+package easterRaces.core;
 
-import christmasRaces.common.Command;
-import christmasRaces.common.ExceptionMessage;
-import christmasRaces.core.interfaces.Controller;
-import christmasRaces.io.interfaces.InputReader;
-import christmasRaces.io.interfaces.OutputWriter;
+import easterRaces.common.Command;
+import easterRaces.common.ExceptionMessage;
+import easterRaces.io.InputReader;
+import easterRaces.io.OutputWriter;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @SuppressWarnings("FieldMayBeFinal")
 public class Engine implements Runnable {
@@ -54,23 +54,9 @@ public class Engine implements Runnable {
         Command command = Command.parseCommand(commandAsString);
 
         switch (command) {
-            case ADD_DRIVER_TO_RACE: {
-                String raceName = data[1];
-                String driverName = data[2];
-                return this.controller.addDriverToRace(raceName, driverName);
-            }
-            case START_RACE: {
-                String raceName = data[1];
-                return this.controller.startRace(raceName);
-            }
             case CREATE_DRIVER: {
                 String driverName = data[1];
                 return this.controller.createDriver(driverName);
-            }
-            case ADD_CAR_TO_DRIVER: {
-                String driverName = data[1];
-                String carModel = data[2];
-                return this.controller.addCarToDriver(driverName, carModel);
             }
             case CREATE_CAR: {
                 String type = data[1];
@@ -78,10 +64,24 @@ public class Engine implements Runnable {
                 int horsePower = Integer.parseInt(data[3]);
                 return this.controller.createCar(type, model, horsePower);
             }
+            case ADD_CAR_TO_DRIVER: {
+                String driverName = data[1];
+                String carModel = data[2];
+                return this.controller.addCarToDriver(driverName, carModel);
+            }
+            case ADD_DRIVER_TO_RACE: {
+                String raceName = data[1];
+                String driverName = data[2];
+                return this.controller.addDriverToRace(raceName, driverName);
+            }
             case CREATE_RACE: {
                 String raceName = data[1];
                 int laps = Integer.parseInt(data[2]);
                 return this.controller.createRace(raceName, laps);
+            }
+            case START_RACE: {
+                String raceName = data[1];
+                return this.controller.startRace(raceName);
             }
             case END:
                 return Command.END.name();

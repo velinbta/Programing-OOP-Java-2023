@@ -1,6 +1,10 @@
 package christmasRaces.common;
 
-public class ExceptionMessages {
+public class ExceptionMessage {
+
+    private ExceptionMessage() {
+
+    }
 
     public static final String INVALID_MODEL_FORMAT = "Model %s cannot be less than %d symbols.";
 

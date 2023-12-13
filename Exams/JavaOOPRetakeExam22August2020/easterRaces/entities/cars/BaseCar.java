@@ -1,46 +1,50 @@
-package christmasRaces.entities.cars;
+package easterRaces.entities.cars;
 
-import christmasRaces.common.ExceptionMessage;
+import easterRaces.common.ExceptionMessage;
 
 import java.util.Objects;
 
 public abstract class BaseCar implements Car {
 
-    private int minimumHorsePower;
-    private int maximumHorsePower;
-
     private String model;
     private int horsePower;
     private double cubicCentimeters;
+    private int minHorsePower;
+    private int maxHorsePower;
 
-    protected BaseCar(String model, int horsePower, double cubicCentimeters,
-                      int minimumHorsePower, int maximumHorsePower) {
-        this.setMinimumHorsePower(minimumHorsePower);
-        this.setMaximumHorsePower(maximumHorsePower);
+    protected BaseCar(String model, int horsePower, double cubicCentimeters, int minHorsePower, int maxHorsePower) {
         this.setModel(model);
+        this.setMinHorsePower(minHorsePower);
+        this.setMaxHorsePower(maxHorsePower);
         this.setHorsePower(horsePower);
         this.setCubicCentimeters(cubicCentimeters);
     }
 
-    private void setMinimumHorsePower(int minimumHorsePower) { // TODO
-        this.minimumHorsePower = minimumHorsePower;
-    }
-
-    private void setMaximumHorsePower(int maximumHorsePower) { // TODO
-        this.maximumHorsePower = maximumHorsePower;
+    @Override
+    public double calculateRacePoints(int laps) {
+        return (this.getCubicCentimeters() / this.getHorsePower()) * laps;
     }
 
     private void setModel(String model) {
         if (Objects.isNull(model) || model.isBlank() || model.length() < 4) {
             throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_MODEL_FORMAT,
-                    this.getModel(), 4));
+                    model, 4));
         }
         this.model = model;
     }
 
+    private void setMinHorsePower(int minHorsePower) {
+        this.minHorsePower = minHorsePower;
+    }
+
+    private void setMaxHorsePower(int maxHorsePower) {
+        this.maxHorsePower = maxHorsePower;
+    }
+
     private void setHorsePower(int horsePower) {
-        if (horsePower < this.minimumHorsePower || horsePower > this.maximumHorsePower) {
-            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_HORSE_POWER_FORMAT, horsePower));
+        if (horsePower < this.minHorsePower || horsePower > this.maxHorsePower) {
+            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_HORSE_POWER_FORMAT,
+                    horsePower));
         }
         this.horsePower = horsePower;
     }
@@ -62,11 +66,6 @@ public abstract class BaseCar implements Car {
     @Override
     public double getCubicCentimeters() {
         return this.cubicCentimeters;
-    }
-
-    @Override
-    public double calculateRacePoints(int laps) {
-        return (this.getCubicCentimeters() / this.getHorsePower()) * laps;
     }
 
 }

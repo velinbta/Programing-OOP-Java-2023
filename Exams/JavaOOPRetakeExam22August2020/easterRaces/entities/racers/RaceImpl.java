@@ -1,7 +1,7 @@
-package christmasRaces.entities.races;
+package easterRaces.entities.racers;
 
-import christmasRaces.common.ExceptionMessage;
-import christmasRaces.entities.drivers.Driver;
+import easterRaces.common.ExceptionMessage;
+import easterRaces.entities.drivers.Driver;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +23,7 @@ public class RaceImpl implements Race {
 
     @Override
     public void addDriver(Driver driver) {
+
         if (Objects.isNull(driver)) {
             throw new IllegalArgumentException(ExceptionMessage.DRIVER_INVALID);
         }
@@ -42,14 +43,16 @@ public class RaceImpl implements Race {
 
     private void setName(String name) {
         if (Objects.isNull(name) || name.isBlank() || name.length() < 5) {
-            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_NAME_FORMAT, name, 5));
+            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_NAME_FORMAT,
+                    name, 5));
         }
         this.name = name;
     }
 
     private void setLaps(int laps) {
         if (laps < 1) {
-            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_NUMBER_OF_LAPS_FORMAT, laps));
+            throw new IllegalArgumentException(String.format(ExceptionMessage.INVALID_NUMBER_OF_LAPS_FORMAT,
+                    laps));
         }
         this.laps = laps;
     }
